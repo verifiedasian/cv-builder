@@ -23,6 +23,14 @@ function WorkInfo(props) {
       <br />
       <input
         type="text"
+        name="location"
+        value={props.location}
+        onChange={props.handleChange}
+        placeholder="Location"
+      />
+      <br />
+      <input
+        type="text"
         name="taskDesc"
         value={props.taskDesc}
         onChange={props.handleChange}
@@ -34,14 +42,14 @@ function WorkInfo(props) {
         name="workDateFrom"
         value={props.workDateFrom}
         onChange={props.handleChange}
-        placeholder="Date of Work Start"
+        placeholder="Start Date"
       />
       <input
         type="date"
         name="workDateTo"
         value={props.workDateTo}
         onChange={props.handleChange}
-        placeholder="Date of Work To"
+        placeholder="Finish Date"
       />
     </div>
   );

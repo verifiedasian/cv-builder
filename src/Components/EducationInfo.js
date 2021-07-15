@@ -10,7 +10,7 @@ function EducationInfo(props) {
         name="qualiType"
         value={props.qualiType}
         onChange={props.handleChange}
-        placeholder="Type of Qualification Gained (i.e Bachelors, PHD)"
+        placeholder="Qualification gained (i.e Bachelors, PHD)"
       />
       <br />
       <input
@@ -18,7 +18,7 @@ function EducationInfo(props) {
         name="eduOrganisation"
         value={props.eduOrganisation}
         onChange={props.handleChange}
-        placeholder="Organisation providing qualification"
+        placeholder="Institution providing qualification"
       />
       <br />
       <input
@@ -26,14 +26,14 @@ function EducationInfo(props) {
         name="eduDateFrom"
         value={props.eduDateFrom}
         onChange={props.handleChange}
-        placeholder="Date of Study From"
+        placeholder="Start Date"
       />
       <input
         type="date"
         name="eduDateTo"
         value={props.eduDateTo}
         onChange={props.handleChange}
-        placeholder="Date of Study To"
+        placeholder="Finish Date"
       />
     </div>
   );

@@ -22,6 +22,7 @@ class Main extends Component {
       workInfo: {
         positionName: "",
         companyName: "",
+        location: "",
         taskDesc: "",
         workDateFrom: "",
         workDateTo: "",
@@ -72,7 +73,47 @@ class Main extends Component {
           taskDesc={this.state.workInfo.taskDesc}
           workDateFrom={this.state.workInfo.workDateFrom}
           workDateTo={this.state.workInfo.workDateTo}
+          location={this.state.workInfo.location}
         />
+        <div className="displaytemplate">
+          <div className="section1">
+            <h2>
+              {this.state.personalInfo.firstName +
+                " " +
+                this.state.personalInfo.lastName}
+            </h2>
+            <br />
+            <h3>
+              {this.state.personalInfo.email +
+                " | " +
+                this.state.personalInfo.phoneNum}
+            </h3>
+          </div>
+          <div className="section2">
+            <h2>Employment History</h2>
+            <br />
+            <h3>{this.state.workInfo.positionName}</h3>
+            <br />
+            <p>{this.state.workInfo.companyName}</p>
+            <br />
+            <p>{this.state.workInfo.location}</p>
+            <br />
+            <p>{this.state.workInfo.workDateFrom}</p>
+            <p>{this.state.workInfo.workDateTo}</p>
+            <br />
+            <p>{this.state.workInfo.taskDesc}</p>
+          </div>
+          <div className="section3">
+            <h2>Education and Qualifications</h2>
+            <br />
+            <h3>{this.state.educationInfo.qualiType}</h3>
+            <br />
+            <p>{this.state.educationInfo.eduOrganisation}</p>
+            <br />
+            <p>{this.state.educationInfo.eduDateFrom}</p>
+            <p>{this.state.educationInfo.eduDateTo}</p>
+          </div>
+        </div>
       </div>
     );
   }

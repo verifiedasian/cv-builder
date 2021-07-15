@@ -1,0 +1,46 @@
+// Google Font
+@import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,400);
+
+// Variables
+$roboto-stack: "Roboto", sans-serif;
+$headerfooter-color: white;
+$bg-color: rgb(69, 81, 136);
+
+// Base container
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: $roboto-stack;
+  height: 100vh;
+}
+
+.maincontent {
+  flex: 1;
+}
+
+// Header and Footer
+.header {
+  color: $headerfooter-color;
+  background-color: $bg-color;
+  height: 10vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  h1 {
+    align-self: center;
+  }
+}
+
+.footer {
+  color: $headerfooter-color;
+  background-color: $bg-color;
+  height: 7vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  h3 {
+    align-self: center;
+  }
+}
