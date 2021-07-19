@@ -30,6 +30,7 @@ class Main extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -47,6 +48,10 @@ class Main extends Component {
         [event.target.name]: event.target.value,
       },
     }));
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
   }
 
   render() {
@@ -67,6 +72,7 @@ class Main extends Component {
           eduDateTo={this.state.educationInfo.eduDateTo}
         />
         <WorkInfo
+          handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
           positionName={this.state.workInfo.positionName}
           companyName={this.state.workInfo.companyName}
@@ -82,31 +88,33 @@ class Main extends Component {
                 " " +
                 this.state.personalInfo.lastName}
             </h2>
-            <br />
-            <h3>
+            <p>
               {this.state.personalInfo.email +
                 " | " +
                 this.state.personalInfo.phoneNum}
-            </h3>
+            </p>
           </div>
           <div className="section2">
-            <h2>Employment History</h2>
+            <h3>Employment History</h3>
             <br />
-            <h3>{this.state.workInfo.positionName}</h3>
+            <h4>{this.state.workInfo.positionName}</h4>
             <br />
-            <p>{this.state.workInfo.companyName}</p>
+            <h4>{this.state.workInfo.companyName}</h4>
             <br />
-            <p>{this.state.workInfo.location}</p>
+            <h5>{this.state.workInfo.location}</h5>
             <br />
-            <p>{this.state.workInfo.workDateFrom}</p>
-            <p>{this.state.workInfo.workDateTo}</p>
+            <h5>
+              {this.state.workInfo.workDateFrom +
+                " - " +
+                this.state.workInfo.workDateTo}
+            </h5>
             <br />
-            <p>{this.state.workInfo.taskDesc}</p>
+            <h5>{this.state.workInfo.taskDesc}</h5>
           </div>
           <div className="section3">
-            <h2>Education and Qualifications</h2>
+            <h3>Education and Qualifications</h3>
             <br />
-            <h3>{this.state.educationInfo.qualiType}</h3>
+            <h4>{this.state.educationInfo.qualiType}</h4>
             <br />
             <p>{this.state.educationInfo.eduOrganisation}</p>
             <br />

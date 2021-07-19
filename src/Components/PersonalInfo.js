@@ -4,7 +4,6 @@ function PersonalInfo(props) {
   return (
     <div className="generalinfo-form">
       <h2>Personal Information</h2>
-      <br />
       <input
         type="text"
         name="firstName"
@@ -19,7 +18,6 @@ function PersonalInfo(props) {
         onChange={props.handleChange}
         placeholder="Last name"
       />
-      <br />
       <input
         type="text"
         name="email"
@@ -34,6 +32,7 @@ function PersonalInfo(props) {
         onChange={props.handleChange}
         placeholder="Telephone Number"
       />
+      <div className="line"></div>
     </div>
   );
 }
