@@ -1,4 +1,10 @@
-# Getting Started with Create React App
+# Curriculum Vitae Builder Application
+
+An application with creates a curriculum vitae for the user. Requires them to enter their personal details, education history, any work experience they had/have.
+
+Built using React with the new addition of Sass to implement the stylings. 
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
