@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PersonalInfo from "./Components/PersonalInfo";
 import EducationInfo from "./Components/EducationInfo";
 import WorkInfo from "./Components/WorkInfo";
+import Section3 from "./Components/Section3";
 
 class Main extends Component {
   constructor() {
@@ -18,6 +19,7 @@ class Main extends Component {
         eduOrganisation: "",
         eduDateFrom: "",
         eduDateTo: "",
+        eduInfoList: [],
       },
       workInfo: {
         positionName: "",
@@ -26,6 +28,7 @@ class Main extends Component {
         taskDesc: "",
         workDateFrom: "",
         workDateTo: "",
+        workInfoList: [],
       },
     };
 
@@ -51,6 +54,22 @@ class Main extends Component {
   }
 
   handleSubmit(event) {
+    this.setState((prevState) => ({
+      workInfo: {
+        ...prevState.workInfo,
+        [event.target.workInfoList]: [
+          <Section3
+            qualiType={this.state.workInfo.qualiType}
+            eduOrganisation={this.state.workInfo.eduOrganisation}
+            eduDateFrom={this.state.workInfo.eduDateFrom}
+            eduDateTo={this.state.workInfo.eduDateTo}
+          />,
+        ],
+      },
+      educationInfo: {
+        ...prevState.educationInfo,
+      },
+    }));
     event.preventDefault();
   }
 
@@ -66,6 +85,7 @@ class Main extends Component {
         />
         <EducationInfo
           handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
           qualiType={this.state.educationInfo.qualiType}
           eduOrganisation={this.state.educationInfo.eduOrganisation}
           eduDateFrom={this.state.educationInfo.eduDateFrom}
@@ -113,13 +133,7 @@ class Main extends Component {
           </div>
           <div className="section3">
             <h3>Education and Qualifications</h3>
-            <br />
-            <h4>{this.state.educationInfo.qualiType}</h4>
-            <br />
-            <p>{this.state.educationInfo.eduOrganisation}</p>
-            <br />
-            <p>{this.state.educationInfo.eduDateFrom}</p>
-            <p>{this.state.educationInfo.eduDateTo}</p>
+            {this.state.educationInfo.eduInfoList}
           </div>
         </div>
       </div>
