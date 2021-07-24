@@ -32,10 +32,14 @@ class Main extends Component {
         workDateFrom: "",
         workDateTo: "",
       },
+      eduIsValid: false,
+      workIsValid: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.addItem = this.addItem.bind(this);
+    this.addWorkItem = this.addWorkItem.bind(this);
+    this.addEduItem = this.addEduItem.bind(this);
+    this.isEmpty = this.isEmpty.bind(this);
   }
 
   handleChange(event) {
@@ -53,27 +57,42 @@ class Main extends Component {
         [event.target.name]: event.target.value,
       },
     }));
+    let result1 = Object.values(this.state.educationInfo).every(
+      (e) => e !== ""
+    );
+    let result2 = Object.values(this.state.workInfo).every((e) => e !== "");
+
+    this.setState({});
   }
 
-  addItem(event) {
-    this.setState((prevState) => ({
-      educationInfoList: [
-        ...prevState.educationInfoList,
-        {
-          qualiType: this.state.educationInfo.qualiType,
-          eduOrganisation: this.state.educationInfo.eduOrganisation,
-          eduDateTo: this.state.educationInfo.eduDateTo,
-          eduDateFrom: this.state.educationInfo.eduDateFrom,
-        },
-      ],
-      educationInfo: {
-        ...prevState.educationInfo,
-        qualiType: "",
-        eduOrganisation: "",
-        eduDateFrom: "",
-        eduDateTo: "",
-      },
+  isEmpty(event) {
+    event.preventDefault();
 
+    this.setState({
+      eduIsValid: result1,
+      workIsValid: result2,
+    });
+    if (!this.state.eduIsValid) {
+      alert("Please fill out form");
+    } else {
+      this.addEduItem();
+    }
+
+    if (!this.state.workIsValid) {
+      alert("Please fill out form");
+    } else {
+      this.addWorkItem();
+    }
+  }
+
+  addWorkItem(event) {
+    event.preventDefault();
+
+    this.setState({
+      edu,
+    });
+
+    this.setState((prevState) => ({
       workInfoList: [
         ...prevState.workInfoList,
         {
@@ -95,7 +114,27 @@ class Main extends Component {
         workDateTo: "",
       },
     }));
-    event.preventDefault();
+  }
+
+  addEduItem() {
+    this.setState((prevState) => ({
+      educationInfoList: [
+        ...prevState.educationInfoList,
+        {
+          qualiType: this.state.educationInfo.qualiType,
+          eduOrganisation: this.state.educationInfo.eduOrganisation,
+          eduDateTo: this.state.educationInfo.eduDateTo,
+          eduDateFrom: this.state.educationInfo.eduDateFrom,
+        },
+      ],
+      educationInfo: {
+        ...prevState.educationInfo,
+        qualiType: "",
+        eduOrganisation: "",
+        eduDateFrom: "",
+        eduDateTo: "",
+      },
+    }));
   }
 
   render() {
@@ -127,15 +166,15 @@ class Main extends Component {
           phoneNum={this.state.personalInfo.phoneNum}
         />
         <EducationInfo
+          isEmpty={this.isEmpty}
           handleChange={this.handleChange}
-          addItem={this.addItem}
           qualiType={this.state.educationInfo.qualiType}
           eduOrganisation={this.state.educationInfo.eduOrganisation}
           eduDateFrom={this.state.educationInfo.eduDateFrom}
           eduDateTo={this.state.educationInfo.eduDateTo}
         />
         <WorkInfo
-          addItem={this.addItem}
+          isEmpty={this.isEmpty}
           handleChange={this.handleChange}
           positionName={this.state.workInfo.positionName}
           companyName={this.state.workInfo.companyName}
