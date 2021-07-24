@@ -84,7 +84,7 @@ input::placeholder {
   margin: $content-margin;
 }
 
-.section1 {
+.section1-detail {
   width: 100%;
   background-color: rgb(119, 136, 185);
   order: 1;
@@ -102,10 +102,16 @@ input::placeholder {
 
 .section2 {
   order: 2;
+  h3 {
+    text-decoration: underline;
+  }
 }
 
 .section3 {
   order: 3;
+  h3 {
+    text-decoration: underline;
+  }
 }
 // Header and Footer
 .header {

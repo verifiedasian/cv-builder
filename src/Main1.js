@@ -3,15 +3,11 @@ import PersonalInfo from "./Components/PersonalInfo";
 import EducationInfo from "./Components/EducationInfo";
 import WorkInfo from "./Components/WorkInfo";
 import Section3 from "./Components/Section3";
-import Section2 from "./Components/Section2";
-import Section1 from "./Components/Section1";
 
 class Main extends Component {
   constructor() {
     super();
     this.state = {
-      workInfoList: [],
-      educationInfoList: [],
       personalInfo: {
         firstName: "",
         lastName: "",
@@ -23,6 +19,7 @@ class Main extends Component {
         eduOrganisation: "",
         eduDateFrom: "",
         eduDateTo: "",
+        eduInfoList: [],
       },
       workInfo: {
         positionName: "",
@@ -31,11 +28,12 @@ class Main extends Component {
         taskDesc: "",
         workDateFrom: "",
         workDateTo: "",
+        workInfoList: [],
       },
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.addItem = this.addItem.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
@@ -55,68 +53,28 @@ class Main extends Component {
     }));
   }
 
-  addItem(event) {
+  handleSubmit(event) {
     this.setState((prevState) => ({
-      educationInfoList: [
-        ...prevState.educationInfoList,
-        {
-          qualiType: this.state.educationInfo.qualiType,
-          eduOrganisation: this.state.educationInfo.eduOrganisation,
-          eduDateTo: this.state.educationInfo.eduDateTo,
-          eduDateFrom: this.state.educationInfo.eduDateFrom,
-        },
-      ],
-      educationInfo: {
-        ...prevState.educationInfo,
-        qualiType: "",
-        eduOrganisation: "",
-        eduDateFrom: "",
-        eduDateTo: "",
-      },
-
-      workInfoList: [
-        ...prevState.workInfoList,
-        {
-          positionName: this.state.workInfo.positionName,
-          companyName: this.state.workInfo.companyName,
-          location: this.state.workInfo.location,
-          taskDesc: this.state.workInfo.taskDesc,
-          workDateFrom: this.state.workInfo.workDateFrom,
-          workDateTo: this.state.workInfo.workDateTo,
-        },
-      ],
       workInfo: {
         ...prevState.workInfo,
-        positionName: "",
-        companyName: "",
-        location: "",
-        taskDesc: "",
-        workDateFrom: "",
-        workDateTo: "",
+        [event.target.workInfoList]: [
+          <Section3
+            qualiType={this.state.workInfo.qualiType}
+            eduOrganisation={this.state.workInfo.eduOrganisation}
+            eduDateFrom={this.state.workInfo.eduDateFrom}
+            eduDateTo={this.state.workInfo.eduDateTo}
+          />,
+        ],
+      },
+      educationInfo: {
+        ...prevState.educationInfo,
       },
     }));
     event.preventDefault();
   }
 
   render() {
-    const educationItem = this.state.educationInfoList.map((item) => (
-      <Section3
-        qualiType={item.qualiType}
-        eduOrganisation={item.eduOrganisation}
-        eduDateTo={item.eduDateTo}
-        eduDateFrom={item.eduDateFrom}
-      />
-    ));
-    const workItem = this.state.workInfoList.map((item) => (
-      <Section2
-        positionName={item.positionName}
-        companyName={item.companyName}
-        location={item.location}
-        taskDesc={item.taskDesc}
-        workDateFrom={item.workDateFrom}
-        workDateTo={item.workDateTo}
-      />
-    ));
+    let education = 
     return (
       <div className="maincontent">
         <PersonalInfo
@@ -128,14 +86,14 @@ class Main extends Component {
         />
         <EducationInfo
           handleChange={this.handleChange}
-          addItem={this.addItem}
+          handleSubmit={this.handleSubmit}
           qualiType={this.state.educationInfo.qualiType}
           eduOrganisation={this.state.educationInfo.eduOrganisation}
           eduDateFrom={this.state.educationInfo.eduDateFrom}
           eduDateTo={this.state.educationInfo.eduDateTo}
         />
         <WorkInfo
-          addItem={this.addItem}
+          handleSubmit={this.handleSubmit}
           handleChange={this.handleChange}
           positionName={this.state.workInfo.positionName}
           companyName={this.state.workInfo.companyName}
@@ -145,19 +103,38 @@ class Main extends Component {
           location={this.state.workInfo.location}
         />
         <div className="displaytemplate">
-          <Section1
-            firstName={this.state.personalInfo.firstName}
-            lastName={this.state.personalInfo.lastName}
-            email={this.state.personalInfo.email}
-            phoneNum={this.state.personalInfo.phoneNum}
-          />
+          <div className="section1">
+            <h2>
+              {this.state.personalInfo.firstName +
+                " " +
+                this.state.personalInfo.lastName}
+            </h2>
+            <p>
+              {this.state.personalInfo.email +
+                " | " +
+                this.state.personalInfo.phoneNum}
+            </p>
+          </div>
           <div className="section2">
             <h3>Employment History</h3>
-            {workItem}
+            <br />
+            <h4>{this.state.workInfo.positionName}</h4>
+            <br />
+            <h4>{this.state.workInfo.companyName}</h4>
+            <br />
+            <h5>{this.state.workInfo.location}</h5>
+            <br />
+            <h5>
+              {this.state.workInfo.workDateFrom +
+                " - " +
+                this.state.workInfo.workDateTo}
+            </h5>
+            <br />
+            <h5>{this.state.workInfo.taskDesc}</h5>
           </div>
           <div className="section3">
             <h3>Education and Qualifications</h3>
-            {educationItem}
+            {this.state.educationInfo.eduInfoList}
           </div>
         </div>
       </div>
