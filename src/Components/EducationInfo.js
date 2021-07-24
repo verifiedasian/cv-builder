@@ -4,7 +4,7 @@ function EducationInfo(props) {
   return (
     <div className="educationinfo-form">
       <h2>Education</h2>
-      <form onSubmit={props.addItem}>
+      <form onSubmit={props.isEmpty}>
         <input
           type="text"
           name="qualiType"

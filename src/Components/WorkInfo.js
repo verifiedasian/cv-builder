@@ -4,7 +4,7 @@ function WorkInfo(props) {
   return (
     <div className="workinfo-form">
       <h2>Work Experience</h2>
-      <form onSubmit={props.addItem}>
+      <form onSubmit={props.isEmpty}>
         <input
           type="text"
           name="positionName"
